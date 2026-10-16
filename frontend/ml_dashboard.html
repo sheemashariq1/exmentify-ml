@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+    <meta charset="utf-8">
+    <title>Exmentify - Weak Topic Radar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 16px
+        }
+
+        h1 {
+            margin-bottom: 4px
+        }
+
+        .sub {
+            color: #555;
+            margin-bottom: 16px
+        }
+
+        .bar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px
+        }
+
+        button,
+        select,
+        input {
+            padding: 8px 12px;
+            font-size: 14px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px
+        }
+
+        .tile {
+            border-radius: 10px;
+            padding: 14px;
+            color: #fff;
+            font-weight: bold
+        }
+
+        .tile small {
+            display: block;
+            font-weight: normal;
+            margin-top: 4px
+        }
+
+        #next {
+            background: #eef;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Weak Topic Radar</h1>
+    <div class="sub">ML-predicted readiness for each GATE CS topic (red = weak, green = strong)</div>
+    <div class="bar">
+        <input id="user" value="sheema">
+        <button onclick="seed()">Load demo data</button>
+        <button onclick="load()">Refresh</button>
+    </div>
+    <div class="bar">
+        <select id="topic"></select>
+        <button onclick="log(true)">I got it right</button>
+        <button onclick="log(false)">I got it wrong</button>
+    </div>
+    <div id="next"></div>
+    <button onclick="explain()">Explain my weakest topic</button>
+    <small>AI-generated: verify with a standard textbook.</small>
+    <div id="explain" style="background:#f6f6f6;padding:12px 16px;border-radius:8px;line-height:1.5"></div>
+    <div class="grid" id="grid"></div>
+    <script>
+        const u = () => document.getElementById('user').value;
+        async function explain() {
+            const el = document.getElementById('explain');
+            el.textContent = 'Thinking...';
+            const r = await fetch('/ml/explain/' + u());
+            const d = await r.json();
+            if (!r.ok) { el.textContent = d.detail || 'Error'; return; }
+            el.innerHTML = DOMPurify.sanitize(marked.parse(d.content));
+        }
+        async function load() {
+            const data = await (await fetch('/ml/weak-topics/' + u())).json();
+            const vals = data.map(d => d.readiness_percent);
+            const lo = Math.min(...vals), hi = Math.max(...vals);
+            const hue = v => hi > lo ? (v - lo) / (hi - lo) * 120 : 60;
+            document.getElementById('grid').innerHTML = data.map(d =>
+                `<div class="tile" style="background:hsl(${hue(d.readiness_percent)},65%,40%)">
+       ${d.topic}<small>${d.readiness_percent}% ready - ${d.status} - ${d.attempts} attempts</small></div>`).join('');
+            const n = await (await fetch('/ml/next-question/' + u())).json();
+            document.getElementById('next').innerHTML =
+                `<b>Study next:</b> ${n.topic} (difficulty ${n.suggested_difficulty}, readiness ${n.readiness_percent}%)`;
+        }
+        async function seed() { await fetch('/ml/demo-seed/' + u(), { method: 'POST' }); load(); }
+        async function log(ok) {
+            await fetch('/ml/attempt', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user: u(), topic: document.getElementById('topic').value, correct: ok })
+            });
+            load();
+        }
+        (async () => {
+            const t = await (await fetch('/ml/topics')).json();
+            document.getElementById('topic').innerHTML = t.map(x => `<option>${x}</option>`).join('');
+            load();
+        })();
+    </script>
+</body>
+
+</html>
