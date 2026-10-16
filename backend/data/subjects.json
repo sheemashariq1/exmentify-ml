@@ -1,0 +1,119 @@
+{
+  "gate_cs": [
+    {
+      "subject_id": "eng_math",
+      "exam_id": "gate_cs",
+      "name": "Engineering Mathematics",
+      "topics": [
+        { "topic_id": "discrete_math", "name": "Discrete Mathematics & Logic", "weightage": "high" },
+        { "topic_id": "linear_algebra", "name": "Linear Algebra", "weightage": "medium" },
+        { "topic_id": "calculus", "name": "Calculus", "weightage": "low" },
+        { "topic_id": "probability_stats", "name": "Probability & Statistics", "weightage": "medium" }
+      ]
+    },
+    {
+      "subject_id": "digital_logic",
+      "exam_id": "gate_cs",
+      "name": "Digital Logic",
+      "topics": [
+        { "topic_id": "boolean_algebra", "name": "Boolean Algebra & Minimization", "weightage": "medium" },
+        { "topic_id": "combinational_circuits", "name": "Combinational Circuits", "weightage": "medium" },
+        { "topic_id": "sequential_circuits", "name": "Sequential Circuits", "weightage": "medium" },
+        { "topic_id": "number_representation", "name": "Number Systems & Representation", "weightage": "low" }
+      ]
+    },
+    {
+      "subject_id": "coa",
+      "exam_id": "gate_cs",
+      "name": "Computer Organization & Architecture",
+      "topics": [
+        { "topic_id": "pipelining", "name": "Pipelining", "weightage": "high" },
+        { "topic_id": "memory_hierarchy", "name": "Memory Hierarchy & Cache", "weightage": "high" },
+        { "topic_id": "io_interrupts", "name": "I/O & Interrupts", "weightage": "medium" },
+        { "topic_id": "instruction_sets", "name": "Instruction Sets & Addressing Modes", "weightage": "medium" }
+      ]
+    },
+    {
+      "subject_id": "dsa",
+      "exam_id": "gate_cs",
+      "name": "Programming & Data Structures",
+      "topics": [
+        { "topic_id": "arrays", "name": "Arrays & Strings", "weightage": "medium" },
+        { "topic_id": "linked_lists", "name": "Linked Lists", "weightage": "medium" },
+        { "topic_id": "stacks_queues", "name": "Stacks & Queues", "weightage": "medium" },
+        { "topic_id": "trees", "name": "Trees & BSTs", "weightage": "high" },
+        { "topic_id": "graphs", "name": "Graph Algorithms", "weightage": "high" },
+        { "topic_id": "hashing", "name": "Hashing", "weightage": "medium" }
+      ]
+    },
+    {
+      "subject_id": "algorithms",
+      "exam_id": "gate_cs",
+      "name": "Algorithms",
+      "topics": [
+        { "topic_id": "sorting_searching", "name": "Sorting & Searching", "weightage": "high" },
+        { "topic_id": "dp", "name": "Dynamic Programming", "weightage": "high" },
+        { "topic_id": "greedy", "name": "Greedy Algorithms", "weightage": "medium" },
+        { "topic_id": "divide_conquer", "name": "Divide & Conquer", "weightage": "medium" },
+        { "topic_id": "complexity_analysis", "name": "Complexity Analysis", "weightage": "high" }
+      ]
+    },
+    {
+      "subject_id": "toc",
+      "exam_id": "gate_cs",
+      "name": "Theory of Computation",
+      "topics": [
+        { "topic_id": "finite_automata", "name": "Finite Automata", "weightage": "high" },
+        { "topic_id": "regular_languages", "name": "Regular Expressions & Languages", "weightage": "medium" },
+        { "topic_id": "cfg_pda", "name": "Context-Free Grammars & PDA", "weightage": "medium" },
+        { "topic_id": "turing_machines", "name": "Turing Machines & Decidability", "weightage": "medium" }
+      ]
+    },
+    {
+      "subject_id": "compilers",
+      "exam_id": "gate_cs",
+      "name": "Compiler Design",
+      "topics": [
+        { "topic_id": "lexical_analysis", "name": "Lexical Analysis", "weightage": "low" },
+        { "topic_id": "parsing", "name": "Parsing", "weightage": "medium" },
+        { "topic_id": "syntax_directed", "name": "Syntax-Directed Translation", "weightage": "low" },
+        { "topic_id": "code_optimization", "name": "Code Optimization", "weightage": "low" }
+      ]
+    },
+    {
+      "subject_id": "os",
+      "exam_id": "gate_cs",
+      "name": "Operating Systems",
+      "topics": [
+        { "topic_id": "process_sched", "name": "Process Scheduling", "weightage": "high" },
+        { "topic_id": "concurrency_sync", "name": "Concurrency & Synchronization", "weightage": "high" },
+        { "topic_id": "memory_mgmt", "name": "Memory Management", "weightage": "medium" },
+        { "topic_id": "deadlocks", "name": "Deadlocks", "weightage": "low" },
+        { "topic_id": "file_systems", "name": "File Systems", "weightage": "medium" }
+      ]
+    },
+    {
+      "subject_id": "databases",
+      "exam_id": "gate_cs",
+      "name": "Databases",
+      "topics": [
+        { "topic_id": "er_relational", "name": "ER Model & Relational Algebra", "weightage": "high" },
+        { "topic_id": "sql", "name": "SQL", "weightage": "high" },
+        { "topic_id": "normalization", "name": "Normalization", "weightage": "high" },
+        { "topic_id": "transactions", "name": "Transactions & Concurrency Control", "weightage": "medium" },
+        { "topic_id": "indexing", "name": "Indexing", "weightage": "medium" }
+      ]
+    },
+    {
+      "subject_id": "networks",
+      "exam_id": "gate_cs",
+      "name": "Computer Networks",
+      "topics": [
+        { "topic_id": "osi_tcpip", "name": "OSI & TCP/IP Model", "weightage": "high" },
+        { "topic_id": "routing", "name": "Routing Algorithms", "weightage": "medium" },
+        { "topic_id": "transport_layer", "name": "Transport Layer Protocols", "weightage": "high" },
+        { "topic_id": "network_security", "name": "Network Security Basics", "weightage": "low" }
+      ]
+    }
+  ]
+}

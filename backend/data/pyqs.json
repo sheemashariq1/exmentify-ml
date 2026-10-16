@@ -1,0 +1,1110 @@
+{
+  "pyqs": [
+    {
+      "pyq_id": "gate_dsa_2023_q12",
+      "exam_id": "gate_cs",
+      "topic_id": "arrays",
+      "year": 2023,
+      "question_text": "An array A[1..n] contains n distinct integers. What is the worst-case time complexity of finding the second largest element using a single pass?",
+      "options": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_dsa_2022_q07",
+      "exam_id": "gate_cs",
+      "topic_id": "arrays",
+      "year": 2022,
+      "question_text": "Which technique is most efficient for reversing a string of length n in place?",
+      "options": [
+        "Using an auxiliary array of size n",
+        "Two-pointer swap from both ends",
+        "Recursion with O(n) extra stack",
+        "Sorting the characters"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dsa_2021_q15",
+      "exam_id": "gate_cs",
+      "topic_id": "arrays",
+      "year": 2021,
+      "question_text": "Given a sorted rotated array, which algorithm finds a target element in O(log n) time?",
+      "options": [
+        "Linear search",
+        "Modified binary search",
+        "Jump search",
+        "Interpolation search only"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dsa_2020_q09",
+      "exam_id": "gate_cs",
+      "topic_id": "arrays",
+      "year": 2020,
+      "question_text": "What is the time complexity of Kadane's algorithm for maximum subarray sum?",
+      "options": [
+        "O(n^2)",
+        "O(n log n)",
+        "O(n)",
+        "O(2^n)"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_dsa_2023_q18",
+      "exam_id": "gate_cs",
+      "topic_id": "trees",
+      "year": 2023,
+      "question_text": "In a binary search tree with n nodes, what is the worst-case height if the tree is completely unbalanced?",
+      "options": [
+        "log n",
+        "n",
+        "n/2",
+        "sqrt(n)"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dsa_2022_q14",
+      "exam_id": "gate_cs",
+      "topic_id": "trees",
+      "year": 2022,
+      "question_text": "Which traversal of a BST visits nodes in sorted (ascending) order?",
+      "options": [
+        "Preorder",
+        "Postorder",
+        "Inorder",
+        "Level order"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_dsa_2021_q22",
+      "exam_id": "gate_cs",
+      "topic_id": "trees",
+      "year": 2021,
+      "question_text": "What rotations does an AVL tree perform when a left-left imbalance occurs at a node?",
+      "options": [
+        "Left rotation",
+        "Right rotation",
+        "Left-right rotation",
+        "Right-left rotation"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dsa_2020_q19",
+      "exam_id": "gate_cs",
+      "topic_id": "trees",
+      "year": 2020,
+      "question_text": "In a max-heap stored as an array, where is the maximum element located?",
+      "options": [
+        "Last index",
+        "Root (index 0/1)",
+        "Middle index",
+        "Any leaf node"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dsa_2023_q25",
+      "exam_id": "gate_cs",
+      "topic_id": "graphs",
+      "year": 2023,
+      "question_text": "Which algorithm is used to find the shortest path in a graph with non-negative edge weights?",
+      "options": [
+        "Bellman-Ford",
+        "Dijkstra's algorithm",
+        "Floyd-Warshall only",
+        "DFS"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dsa_2022_q28",
+      "exam_id": "gate_cs",
+      "topic_id": "graphs",
+      "year": 2022,
+      "question_text": "What data structure is typically used to implement BFS traversal of a graph?",
+      "options": [
+        "Stack",
+        "Queue",
+        "Priority queue",
+        "Heap"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dsa_2021_q31",
+      "exam_id": "gate_cs",
+      "topic_id": "graphs",
+      "year": 2021,
+      "question_text": "Which algorithm detects a negative weight cycle in a graph?",
+      "options": [
+        "Dijkstra's algorithm",
+        "Prim's algorithm",
+        "Bellman-Ford algorithm",
+        "Kruskal's algorithm"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_dsa_2020_q26",
+      "exam_id": "gate_cs",
+      "topic_id": "graphs",
+      "year": 2020,
+      "question_text": "Kruskal's algorithm for minimum spanning tree relies primarily on which data structure?",
+      "options": [
+        "Union-Find (Disjoint Set)",
+        "Binary heap only",
+        "Adjacency matrix",
+        "Stack"
+      ],
+      "correct_option_index": 0
+    },
+    {
+      "pyq_id": "gate_dsa_2023_q33",
+      "exam_id": "gate_cs",
+      "topic_id": "dp",
+      "year": 2023,
+      "question_text": "What is the time complexity of the standard dynamic programming solution to the 0/1 Knapsack problem with n items and capacity W?",
+      "options": [
+        "O(n)",
+        "O(n + W)",
+        "O(n * W)",
+        "O(2^n)"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_dsa_2022_q37",
+      "exam_id": "gate_cs",
+      "topic_id": "dp",
+      "year": 2022,
+      "question_text": "Which technique does dynamic programming rely on to avoid recomputation of subproblems?",
+      "options": [
+        "Greedy selection",
+        "Memoization / tabulation",
+        "Backtracking",
+        "Divide without combining"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dsa_2021_q40",
+      "exam_id": "gate_cs",
+      "topic_id": "dp",
+      "year": 2021,
+      "question_text": "The Longest Common Subsequence of two strings of length m and n can be computed in what time complexity using DP?",
+      "options": [
+        "O(m + n)",
+        "O(m * n)",
+        "O(m^2 * n^2)",
+        "O(2^(m+n))"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dsa_2020_q35",
+      "exam_id": "gate_cs",
+      "topic_id": "dp",
+      "year": 2020,
+      "question_text": "A problem is suitable for dynamic programming if it exhibits which two properties?",
+      "options": [
+        "Symmetry and linearity",
+        "Overlapping subproblems and optimal substructure",
+        "Randomness and independence",
+        "Sorting and searching"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_os_2023_q05",
+      "exam_id": "gate_cs",
+      "topic_id": "process_sched",
+      "year": 2023,
+      "question_text": "Which CPU scheduling algorithm can lead to starvation of long processes?",
+      "options": [
+        "First Come First Served",
+        "Shortest Job First",
+        "Round Robin",
+        "FCFS with aging"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_os_2022_q11",
+      "exam_id": "gate_cs",
+      "topic_id": "process_sched",
+      "year": 2022,
+      "question_text": "In Round Robin scheduling, what happens if the time quantum is set very large?",
+      "options": [
+        "It behaves like SJF",
+        "It behaves like FCFS",
+        "It behaves like Priority scheduling",
+        "It causes deadlock"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_os_2021_q08",
+      "exam_id": "gate_cs",
+      "topic_id": "process_sched",
+      "year": 2021,
+      "question_text": "Which scheduling algorithm minimizes average waiting time when all burst times are known in advance?",
+      "options": [
+        "FCFS",
+        "Round Robin",
+        "Shortest Job First (non-preemptive)",
+        "Priority scheduling with random priorities"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_os_2023_q16",
+      "exam_id": "gate_cs",
+      "topic_id": "memory_mgmt",
+      "year": 2023,
+      "question_text": "What is the primary purpose of paging in memory management?",
+      "options": [
+        "To eliminate external fragmentation",
+        "To speed up disk I/O",
+        "To increase cache hit ratio",
+        "To reduce CPU scheduling overhead"
+      ],
+      "correct_option_index": 0
+    },
+    {
+      "pyq_id": "gate_os_2022_q20",
+      "exam_id": "gate_cs",
+      "topic_id": "memory_mgmt",
+      "year": 2022,
+      "question_text": "In a demand-paged system, what event occurs when a referenced page is not in memory?",
+      "options": [
+        "Segmentation fault",
+        "Page fault",
+        "Stack overflow",
+        "Bus error"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_os_2021_q14",
+      "exam_id": "gate_cs",
+      "topic_id": "memory_mgmt",
+      "year": 2021,
+      "question_text": "Which page replacement algorithm suffers from Belady's anomaly?",
+      "options": [
+        "LRU",
+        "Optimal",
+        "FIFO",
+        "Clock"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_os_2023_q29",
+      "exam_id": "gate_cs",
+      "topic_id": "deadlocks",
+      "year": 2023,
+      "question_text": "Which of the following is NOT one of the four necessary conditions for deadlock?",
+      "options": [
+        "Mutual exclusion",
+        "Hold and wait",
+        "Preemption",
+        "Circular wait"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_os_2022_q33",
+      "exam_id": "gate_cs",
+      "topic_id": "deadlocks",
+      "year": 2022,
+      "question_text": "The Banker's algorithm is used for which purpose in operating systems?",
+      "options": [
+        "Deadlock detection",
+        "Deadlock avoidance",
+        "Deadlock prevention only",
+        "CPU scheduling"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_math_2023_q02",
+      "exam_id": "gate_cs",
+      "topic_id": "discrete_math",
+      "year": 2023,
+      "question_text": "A relation R on a set is reflexive, symmetric, and transitive. What is R called?",
+      "options": [
+        "A partial order",
+        "An equivalence relation",
+        "A total order",
+        "A bijection"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_math_2022_q05",
+      "exam_id": "gate_cs",
+      "topic_id": "discrete_math",
+      "year": 2022,
+      "question_text": "How many edges does a simple undirected complete graph with n vertices have?",
+      "options": [
+        "n",
+        "n(n-1)",
+        "n(n-1)/2",
+        "n^2"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_math_2023_q11",
+      "exam_id": "gate_cs",
+      "topic_id": "linear_algebra",
+      "year": 2023,
+      "question_text": "A square matrix A has determinant 0. What does this imply about A?",
+      "options": [
+        "A is invertible",
+        "A is singular (non-invertible)",
+        "A is symmetric",
+        "A has all positive eigenvalues"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_math_2022_q14",
+      "exam_id": "gate_cs",
+      "topic_id": "probability_stats",
+      "year": 2022,
+      "question_text": "Two fair coins are tossed. What is the probability of getting at least one head?",
+      "options": [
+        "1/4",
+        "1/2",
+        "3/4",
+        "1"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_dl_2023_q03",
+      "exam_id": "gate_cs",
+      "topic_id": "boolean_algebra",
+      "year": 2023,
+      "question_text": "Which gate combination is functionally complete on its own (can implement any Boolean function)?",
+      "options": [
+        "AND alone",
+        "OR alone",
+        "NAND alone",
+        "XOR alone"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_dl_2022_q09",
+      "exam_id": "gate_cs",
+      "topic_id": "boolean_algebra",
+      "year": 2022,
+      "question_text": "What is the minimized form of the Boolean expression A + A'B?",
+      "options": [
+        "A",
+        "A + B",
+        "AB",
+        "A'B"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dl_2023_q16",
+      "exam_id": "gate_cs",
+      "topic_id": "sequential_circuits",
+      "year": 2023,
+      "question_text": "How many flip-flops are needed to build a MOD-16 counter?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "16"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_coa_2023_q08",
+      "exam_id": "gate_cs",
+      "topic_id": "pipelining",
+      "year": 2023,
+      "question_text": "In a 5-stage pipeline, what causes a structural hazard?",
+      "options": [
+        "Two instructions needing the same hardware resource at once",
+        "A branch instruction changing control flow",
+        "A data dependency between instructions",
+        "An interrupt occurring mid-execution"
+      ],
+      "correct_option_index": 0
+    },
+    {
+      "pyq_id": "gate_coa_2022_q13",
+      "exam_id": "gate_cs",
+      "topic_id": "pipelining",
+      "year": 2022,
+      "question_text": "Which technique reduces pipeline stalls caused by data hazards?",
+      "options": [
+        "Increasing clock speed",
+        "Forwarding (operand bypassing)",
+        "Adding more pipeline stages",
+        "Disabling interrupts"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_coa_2023_q21",
+      "exam_id": "gate_cs",
+      "topic_id": "memory_hierarchy",
+      "year": 2023,
+      "question_text": "A direct-mapped cache has 2^k lines. What determines which cache line a memory block maps to?",
+      "options": [
+        "The tag bits only",
+        "The block's address modulo 2^k",
+        "The most significant bit of the address",
+        "A random hash function"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_coa_2022_q25",
+      "exam_id": "gate_cs",
+      "topic_id": "memory_hierarchy",
+      "year": 2022,
+      "question_text": "Which cache write policy updates main memory immediately on every write?",
+      "options": [
+        "Write-back",
+        "Write-through",
+        "Write-allocate",
+        "Lazy write"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dsa_2023_q40",
+      "exam_id": "gate_cs",
+      "topic_id": "linked_lists",
+      "year": 2023,
+      "question_text": "What is the time complexity of inserting a node at the head of a singly linked list?",
+      "options": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "correct_option_index": 0
+    },
+    {
+      "pyq_id": "gate_dsa_2022_q44",
+      "exam_id": "gate_cs",
+      "topic_id": "linked_lists",
+      "year": 2022,
+      "question_text": "Which algorithm detects a cycle in a linked list using O(1) extra space?",
+      "options": [
+        "Merge sort on the list",
+        "Floyd's cycle detection (slow/fast pointers)",
+        "Binary search",
+        "Depth-first search"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dsa_2023_q47",
+      "exam_id": "gate_cs",
+      "topic_id": "stacks_queues",
+      "year": 2023,
+      "question_text": "Which data structure is used to implement function call recursion in most programming languages?",
+      "options": [
+        "Queue",
+        "Stack",
+        "Heap",
+        "Linked list"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dsa_2022_q49",
+      "exam_id": "gate_cs",
+      "topic_id": "hashing",
+      "year": 2022,
+      "question_text": "What is the average-case time complexity of lookup in a well-implemented hash table?",
+      "options": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "correct_option_index": 0
+    },
+    {
+      "pyq_id": "gate_dsa_2023_q51",
+      "exam_id": "gate_cs",
+      "topic_id": "hashing",
+      "year": 2023,
+      "question_text": "Which technique resolves hash collisions by storing multiple entries at the same index?",
+      "options": [
+        "Linear probing",
+        "Chaining",
+        "Double hashing",
+        "Open addressing only"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_algo_2023_q05",
+      "exam_id": "gate_cs",
+      "topic_id": "sorting_searching",
+      "year": 2023,
+      "question_text": "Which sorting algorithm has the best worst-case time complexity among the following?",
+      "options": [
+        "Bubble sort O(n^2)",
+        "Insertion sort O(n^2)",
+        "Merge sort O(n log n)",
+        "Selection sort O(n^2)"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_algo_2022_q10",
+      "exam_id": "gate_cs",
+      "topic_id": "sorting_searching",
+      "year": 2022,
+      "question_text": "Quicksort's worst-case time complexity O(n^2) occurs when?",
+      "options": [
+        "The array is already sorted and pivot is always the first/last element",
+        "The array is randomly shuffled",
+        "The array has all distinct elements",
+        "The array size is even"
+      ],
+      "correct_option_index": 0
+    },
+    {
+      "pyq_id": "gate_algo_2023_q19",
+      "exam_id": "gate_cs",
+      "topic_id": "complexity_analysis",
+      "year": 2023,
+      "question_text": "If T(n) = 2T(n/2) + O(n), what is T(n) by the Master Theorem?",
+      "options": [
+        "O(n)",
+        "O(n log n)",
+        "O(n^2)",
+        "O(log n)"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_algo_2022_q23",
+      "exam_id": "gate_cs",
+      "topic_id": "greedy",
+      "year": 2022,
+      "question_text": "Which problem is classically solved optimally using a greedy approach?",
+      "options": [
+        "0/1 Knapsack",
+        "Fractional Knapsack",
+        "Longest Common Subsequence",
+        "Traveling Salesman"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_toc_2023_q06",
+      "exam_id": "gate_cs",
+      "topic_id": "finite_automata",
+      "year": 2023,
+      "question_text": "What is the key difference between a DFA and an NFA?",
+      "options": [
+        "DFAs can have epsilon transitions, NFAs cannot",
+        "NFAs can have multiple transitions for the same input from a state, DFAs cannot",
+        "DFAs are more powerful than NFAs",
+        "NFAs cannot be converted to DFAs"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_toc_2022_q12",
+      "exam_id": "gate_cs",
+      "topic_id": "finite_automata",
+      "year": 2022,
+      "question_text": "Which class of languages is recognized by finite automata?",
+      "options": [
+        "Context-free languages",
+        "Regular languages",
+        "Recursively enumerable languages",
+        "Context-sensitive languages"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_toc_2023_q18",
+      "exam_id": "gate_cs",
+      "topic_id": "turing_machines",
+      "year": 2023,
+      "question_text": "The Halting Problem is an example of a problem that is:",
+      "options": [
+        "Solvable in polynomial time",
+        "Undecidable",
+        "NP-complete",
+        "Solvable only by NFAs"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_os_2023_q40",
+      "exam_id": "gate_cs",
+      "topic_id": "concurrency_sync",
+      "year": 2023,
+      "question_text": "Which synchronization primitive prevents more than one process from entering a critical section at a time?",
+      "options": [
+        "Semaphore/Mutex",
+        "Round Robin scheduling",
+        "Paging",
+        "Spooling"
+      ],
+      "correct_option_index": 0
+    },
+    {
+      "pyq_id": "gate_os_2022_q42",
+      "exam_id": "gate_cs",
+      "topic_id": "concurrency_sync",
+      "year": 2022,
+      "question_text": "The Producer-Consumer problem is typically solved using which mechanism?",
+      "options": [
+        "Semaphores with a bounded buffer",
+        "Priority scheduling",
+        "Paging",
+        "Segmentation"
+      ],
+      "correct_option_index": 0
+    },
+    {
+      "pyq_id": "gate_os_2023_q45",
+      "exam_id": "gate_cs",
+      "topic_id": "file_systems",
+      "year": 2023,
+      "question_text": "Which file allocation method suffers most from external fragmentation?",
+      "options": [
+        "Linked allocation",
+        "Indexed allocation",
+        "Contiguous allocation",
+        "FAT-based allocation"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_db_2023_q07",
+      "exam_id": "gate_cs",
+      "topic_id": "er_relational",
+      "year": 2023,
+      "question_text": "In the relational model, what does a foreign key enforce?",
+      "options": [
+        "Uniqueness within its own table",
+        "Referential integrity between two tables",
+        "That a column cannot be NULL",
+        "Sorted order of rows"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_db_2022_q11",
+      "exam_id": "gate_cs",
+      "topic_id": "sql",
+      "year": 2022,
+      "question_text": "Which SQL clause is used to filter groups after a GROUP BY, based on an aggregate condition?",
+      "options": [
+        "WHERE",
+        "HAVING",
+        "ORDER BY",
+        "FILTER"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_db_2023_q15",
+      "exam_id": "gate_cs",
+      "topic_id": "normalization",
+      "year": 2023,
+      "question_text": "A relation is in 2NF but has a transitive dependency on the primary key. Which normal form does it violate?",
+      "options": [
+        "1NF",
+        "2NF",
+        "3NF",
+        "BCNF only, not 3NF"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_db_2022_q19",
+      "exam_id": "gate_cs",
+      "topic_id": "transactions",
+      "year": 2022,
+      "question_text": "Which ACID property ensures a transaction's changes persist even after a system crash?",
+      "options": [
+        "Atomicity",
+        "Consistency",
+        "Isolation",
+        "Durability"
+      ],
+      "correct_option_index": 3
+    },
+    {
+      "pyq_id": "gate_net_2023_q09",
+      "exam_id": "gate_cs",
+      "topic_id": "osi_tcpip",
+      "year": 2023,
+      "question_text": "Which OSI layer is responsible for routing packets between different networks?",
+      "options": [
+        "Data Link layer",
+        "Network layer",
+        "Transport layer",
+        "Session layer"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_net_2022_q14",
+      "exam_id": "gate_cs",
+      "topic_id": "transport_layer",
+      "year": 2022,
+      "question_text": "Which transport layer protocol provides reliable, ordered, connection-oriented delivery?",
+      "options": [
+        "UDP",
+        "TCP",
+        "IP",
+        "ICMP"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_net_2023_q22",
+      "exam_id": "gate_cs",
+      "topic_id": "routing",
+      "year": 2023,
+      "question_text": "Which routing algorithm is used by the OSPF protocol?",
+      "options": [
+        "Distance vector (Bellman-Ford)",
+        "Link state (Dijkstra's algorithm)",
+        "Flooding",
+        "Static routing only"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_math_2023_q25",
+      "exam_id": "gate_cs",
+      "topic_id": "calculus",
+      "year": 2023,
+      "question_text": "What is the value of the limit of (sin x)/x as x approaches 0?",
+      "options": [
+        "0",
+        "1",
+        "infinity",
+        "undefined"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_math_2022_q28",
+      "exam_id": "gate_cs",
+      "topic_id": "calculus",
+      "year": 2022,
+      "question_text": "A function f(x) has f'(x) = 0 at x = c and f''(c) < 0. What does this indicate?",
+      "options": [
+        "A local minimum at c",
+        "A local maximum at c",
+        "An inflection point at c",
+        "f is discontinuous at c"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dl_2023_q30",
+      "exam_id": "gate_cs",
+      "topic_id": "combinational_circuits",
+      "year": 2023,
+      "question_text": "Which combinational circuit selects one of many input lines based on a set of select lines?",
+      "options": [
+        "Decoder",
+        "Multiplexer",
+        "Encoder",
+        "Flip-flop"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dl_2022_q33",
+      "exam_id": "gate_cs",
+      "topic_id": "combinational_circuits",
+      "year": 2022,
+      "question_text": "A full adder circuit adds three input bits. How many outputs does it produce?",
+      "options": [
+        "1 (sum only)",
+        "2 (sum and carry)",
+        "3",
+        "4"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_dl_2023_q36",
+      "exam_id": "gate_cs",
+      "topic_id": "number_representation",
+      "year": 2023,
+      "question_text": "In 8-bit two's complement representation, what is the range of representable integers?",
+      "options": [
+        "0 to 255",
+        "-127 to 127",
+        "-128 to 127",
+        "-256 to 255"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_coa_2023_q29",
+      "exam_id": "gate_cs",
+      "topic_id": "instruction_sets",
+      "year": 2023,
+      "question_text": "Which addressing mode uses the operand's address stored in a register?",
+      "options": [
+        "Immediate addressing",
+        "Direct addressing",
+        "Register indirect addressing",
+        "Indexed addressing"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_coa_2022_q31",
+      "exam_id": "gate_cs",
+      "topic_id": "instruction_sets",
+      "year": 2022,
+      "question_text": "RISC architectures are generally characterized by which feature?",
+      "options": [
+        "A large, complex instruction set",
+        "A small, simple, fixed-length instruction set",
+        "Variable-length instructions only",
+        "No use of registers"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_coa_2023_q34",
+      "exam_id": "gate_cs",
+      "topic_id": "io_interrupts",
+      "year": 2023,
+      "question_text": "Which I/O technique allows a device to transfer data directly to memory without CPU intervention for each byte?",
+      "options": [
+        "Programmed I/O",
+        "Interrupt-driven I/O",
+        "Direct Memory Access (DMA)",
+        "Polling"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_algo_2023_q28",
+      "exam_id": "gate_cs",
+      "topic_id": "divide_conquer",
+      "year": 2023,
+      "question_text": "Which of these algorithms follows the divide-and-conquer paradigm?",
+      "options": [
+        "Bubble sort",
+        "Merge sort",
+        "Insertion sort",
+        "Counting sort"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_algo_2022_q31",
+      "exam_id": "gate_cs",
+      "topic_id": "divide_conquer",
+      "year": 2022,
+      "question_text": "Binary search on a sorted array of size n has what time complexity, and which paradigm does it use?",
+      "options": [
+        "O(n), greedy",
+        "O(log n), divide and conquer",
+        "O(n log n), dynamic programming",
+        "O(1), brute force"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_toc_2023_q24",
+      "exam_id": "gate_cs",
+      "topic_id": "regular_languages",
+      "year": 2023,
+      "question_text": "Which of these languages is NOT regular?",
+      "options": [
+        "Strings with an even number of a's",
+        "Strings ending in 'ab'",
+        "Strings of the form a^n b^n for n >= 0",
+        "Strings containing 'aa' as a substring"
+      ],
+      "correct_option_index": 2
+    },
+    {
+      "pyq_id": "gate_toc_2022_q27",
+      "exam_id": "gate_cs",
+      "topic_id": "regular_languages",
+      "year": 2022,
+      "question_text": "Regular expressions and finite automata are equivalent in what sense?",
+      "options": [
+        "They recognize the same class of languages (regular languages)",
+        "They have the same time complexity",
+        "They use the same memory model",
+        "Regular expressions are strictly more powerful"
+      ],
+      "correct_option_index": 0
+    },
+    {
+      "pyq_id": "gate_toc_2023_q31",
+      "exam_id": "gate_cs",
+      "topic_id": "cfg_pda",
+      "year": 2023,
+      "question_text": "Which automaton is equivalent in power to a context-free grammar?",
+      "options": [
+        "Deterministic Finite Automaton (DFA)",
+        "Pushdown Automaton (PDA)",
+        "Turing Machine",
+        "Finite State Transducer"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_toc_2022_q34",
+      "exam_id": "gate_cs",
+      "topic_id": "cfg_pda",
+      "year": 2022,
+      "question_text": "The language a^n b^n (n >= 0) requires what minimum computational model to recognize?",
+      "options": [
+        "Finite automaton",
+        "Pushdown automaton",
+        "Only a Turing machine",
+        "Regular expression"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_comp_2023_q02",
+      "exam_id": "gate_cs",
+      "topic_id": "lexical_analysis",
+      "year": 2023,
+      "question_text": "What is the main output of the lexical analysis phase of a compiler?",
+      "options": [
+        "A parse tree",
+        "A stream of tokens",
+        "Optimized machine code",
+        "An abstract syntax tree"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_comp_2023_q07",
+      "exam_id": "gate_cs",
+      "topic_id": "parsing",
+      "year": 2023,
+      "question_text": "Which parsing technique builds the parse tree from the leaves up to the root?",
+      "options": [
+        "Top-down parsing",
+        "Bottom-up parsing",
+        "Recursive descent parsing only",
+        "Predictive parsing only"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_comp_2022_q10",
+      "exam_id": "gate_cs",
+      "topic_id": "parsing",
+      "year": 2022,
+      "question_text": "LL(1) parsers are a type of which parsing strategy?",
+      "options": [
+        "Bottom-up parsing",
+        "Top-down parsing",
+        "Operator precedence parsing",
+        "Shift-reduce parsing"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_comp_2023_q13",
+      "exam_id": "gate_cs",
+      "topic_id": "syntax_directed",
+      "year": 2023,
+      "question_text": "Syntax-directed translation associates semantic rules with what part of a grammar?",
+      "options": [
+        "Terminal symbols only",
+        "Productions (grammar rules)",
+        "The lexical analyzer",
+        "Machine code instructions"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_comp_2022_q16",
+      "exam_id": "gate_cs",
+      "topic_id": "code_optimization",
+      "year": 2022,
+      "question_text": "Which optimization technique removes code that computes a value never used afterward?",
+      "options": [
+        "Constant folding",
+        "Dead code elimination",
+        "Loop unrolling",
+        "Register allocation"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_db_2023_q28",
+      "exam_id": "gate_cs",
+      "topic_id": "indexing",
+      "year": 2023,
+      "question_text": "A B+ tree index primarily improves the performance of which operation?",
+      "options": [
+        "INSERT only",
+        "Range queries and lookups",
+        "Table joins only",
+        "Schema changes"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "pyq_id": "gate_db_2022_q30",
+      "exam_id": "gate_cs",
+      "topic_id": "indexing",
+      "year": 2022,
+      "question_text": "What is the main tradeoff of adding more indexes to a database table?",
+      "options": [
+        "Faster reads but slower writes/updates",
+        "Faster writes but slower reads",
+        "No tradeoff, indexes are always free",
+        "Indexes only affect storage, never speed"
+      ],
+      "correct_option_index": 0
+    },
+    {
+      "pyq_id": "gate_net_2023_q27",
+      "exam_id": "gate_cs",
+      "topic_id": "network_security",
+      "year": 2023,
+      "question_text": "Which technique ensures data confidentiality during transmission over a network?",
+      "options": [
+        "Checksums",
+        "Encryption",
+        "Routing tables",
+        "Flow control"
+      ],
+      "correct_option_index": 1
+    }
+  ]
+}

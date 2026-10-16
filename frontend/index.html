@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Exmentify — AI Exam Prep Companion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script type="module">
+  import mermaid from "https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.esm.min.mjs";
+  window.mermaid = mermaid;
+  mermaid.initialize({ startOnLoad: false, theme: "dark", securityLevel: "strict" });
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 10L12 5 2 10l10 5 10-5z"/>
+        <path d="M6 12.5V17c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/>
+      </svg>
+    </div>
+    <div class="brand-text">
+      <span class="brand-title">Exmentify</span>
+      <span class="brand-tagline">AI Exam Prep, On Demand</span>
+      <span class="brand-disclaimer">AI can make mistakes. Verify important info.</span>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <span id="streakPill" class="streak-pill" title="Current study streak" hidden>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3-2 4-2 7a3 3 0 0 0 6 0c2 2 2 5 0 8a7 7 0 0 1-10-6c0-4 3-5 6-9z"/></svg>
+      <span id="streakCount">0</span>
+      <span class="streak-pill-label">day streak</span>
+    </span>
+    <button id="studyPlanNavBtn" class="icon-btn" title="Study Plan" aria-label="Study Plan">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <span class="icon-btn-label">Study Plan</span>
+    </button>
+    <button id="bookmarksNavBtn" class="icon-btn" title="Bookmarks" aria-label="Bookmarks">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg>
+      <span class="icon-btn-label">Bookmarks</span>
+    </button>
+    <button id="badgesNavBtn" class="icon-btn" title="Badges" aria-label="Badges">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5L7 21l5-2.5L17 21l-1.5-8.5"/></svg>
+      <span class="icon-btn-label">Badges</span>
+    </button>
+    <select id="themeSelect" class="theme-select" title="Theme" aria-label="Theme">
+      <option value="dark">🌙 Study Lamp</option>
+      <option value="light">☀️ Daylight</option>
+      <option value="midnight">🌌 Midnight</option>
+      <option value="sepia">📜 Sepia</option>
+    </select>
+  </div>
+</header>
+
+<canvas id="confettiCanvas"></canvas>
+
+<div id="nameEntryOverlay" class="name-overlay" hidden>
+  <div class="name-modal">
+    <h2>What should we call you?</h2>
+    <p class="hint">Just for a personal touch — nothing else changes, no account needed.</p>
+    <input type="text" id="nameInput" placeholder="Your name" />
+    <button id="nameSubmitBtn" class="primary-btn">Continue</button>
+  </div>
+</div>
+
+<main id="app">
+
+  <!-- EXAM SELECT -->
+  <section id="view-exams" class="view">
+    <div class="view-head-row">
+      <div class="view-head">
+        <div class="greeting-row">
+          <span id="userGreeting" class="user-greeting"></span>
+          <button id="changeNameBtn" class="change-name-btn" hidden>Change</button>
+        </div>
+        <span class="eyebrow">01 — Choose your exam</span>
+        <h1>Wherever you're headed next, we've got the prep.</h1>
+        <p class="subhead">Whatever's next after college, Exmentify adapts — GATE CS is fully built out; the rest of your path is wired up and waiting for content.</p>
+        <p id="quoteOfDay" class="quote-of-day"></p>
+      </div>
+      <div class="daily-goal-card">
+        <div class="goal-label">Today's Goal</div>
+        <svg id="goalRing" class="goal-ring" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="42" class="goal-ring-bg" />
+          <circle cx="50" cy="50" r="42" id="goalRingFill" class="goal-ring-fill" />
+          <text x="50" y="56" id="goalRingPct" class="goal-ring-pct" text-anchor="middle">0%</text>
+        </svg>
+        <div id="goalProgressText" class="goal-progress-text">0 / 3 topics</div>
+        <div id="goalStatusText" class="goal-status-text">Let's get started</div>
+        <div class="goal-adjust">
+          <button id="goalDecreaseBtn" class="goal-adjust-btn">−</button>
+          <span class="goal-adjust-label">daily target</span>
+          <button id="goalIncreaseBtn" class="goal-adjust-btn">+</button>
+        </div>
+      </div>
+    </div>
+    <div id="examGrid" class="exam-grid"></div>
+    <div class="developer-credit">
+      <div class="developer-credit-name">DEVELOPED BY SHEEMA SHARIQ</div>
+      <div class="developer-credit-uni">JAMIA MILLIA ISLAMIA</div>
+    </div>
+  </section>
+
+  <!-- SUBJECT / TOPIC BROWSE -->
+  <section id="view-subjects" class="view" hidden>
+    <div class="view-head">
+      <button class="back-link" data-back="exams">&larr; All exams</button>
+      <span class="eyebrow">02 — Pick a topic</span>
+      <h1 id="examTitle">GATE — Computer Science</h1>
+      <p class="subhead">Weightage bars reflect how often a topic tends to show up — spend your time accordingly.</p>
+    </div>
+    <div id="subjectList" class="subject-list"></div>
+    <button id="startContestBtn" class="contest-cta">
+      <span>Weekly Contest</span>
+      <span class="contest-cta-sub">Timed practice, zero leaderboard</span>
+    </button>
+  </section>
+
+  <!-- TOPIC WORKSPACE -->
+  <section id="view-workspace" class="view" hidden>
+    <div class="view-head">
+      <button class="back-link" data-back="subjects">&larr; Topics</button>
+      <span class="eyebrow" id="workspaceSubject">Subject</span>
+      <h1 id="workspaceTopic">Topic</h1>
+    </div>
+
+    <div class="mode-tabs" role="tablist">
+      <button class="mode-tab active" data-mode="explain">Explain</button>
+      <button class="mode-tab" data-mode="notes">Revision Notes</button>
+      <button class="mode-tab" data-mode="practice">Practice</button>
+      <button class="mode-tab" data-mode="pyq_solution">PYQ Solutions</button>
+      <button class="mode-tab" data-mode="doubt">Ask a Doubt</button>
+      <button class="mode-tab" data-mode="flashcards">Flashcards</button>
+      <button class="mode-tab" data-mode="diagnose">Diagnose Mistake</button>
+    </div>
+
+    <div class="lang-row">
+      <label for="langSelect">Explain in</label>
+      <select id="langSelect">
+        <option value="english">English</option>
+        <option value="hinglish">Hinglish</option>
+        <option value="hindi">Hindi</option>
+      </select>
+      <label for="difficultySelect" id="difficultyLabel" hidden>Difficulty</label>
+      <select id="difficultySelect" hidden>
+        <option value="easy">Easy</option>
+        <option value="medium" selected>Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
+
+    <div id="pyqPickerWrap" hidden>
+      <div class="pyq-picker-head">
+        <span class="hint">Previous-year questions for this topic</span>
+        <button id="downloadPyqListBtn" class="secondary-btn small-btn">Download question set (PDF)</button>
+      </div>
+      <div id="pyqPicker" class="pyq-picker"></div>
+    </div>
+
+    <div id="normalOutputWrap">
+      <div class="output-panel">
+        <div class="output-margin"></div>
+        <div id="outputContent" class="output-content">
+          <p class="placeholder">Pick a mode above and hit Generate — content streams in live.</p>
+        </div>
+      </div>
+      <div class="workspace-actions">
+        <button id="generateBtn" class="primary-btn">Generate</button>
+        <button id="downloadPdfBtn" class="secondary-btn" hidden>Download PDF</button>
+        <button id="bookmarkTopicBtn" class="secondary-btn small-btn">☆ Bookmark this topic</button>
+      </div>
+    </div>
+
+    <div id="doubtWrap" class="doubt-wrap" hidden>
+      <div id="doubtMessages" class="doubt-messages">
+        <p class="placeholder">Ask anything specific about this topic — a follow-up question, a confusing step, anything.</p>
+      </div>
+      <div class="doubt-input-row">
+        <input type="text" id="doubtInput" placeholder="e.g. Why is the worst case O(n) here?" />
+        <button id="doubtSendBtn" class="primary-btn">Ask</button>
+      </div>
+    </div>
+
+    <div id="flashcardsWrap" class="flashcards-wrap" hidden>
+      <div id="flashcardStage" class="flashcard-stage">
+        <p class="placeholder">Hit Generate to build a flashcard set for this topic.</p>
+      </div>
+      <div class="flashcard-nav" id="flashcardNav" hidden>
+        <button id="flashcardPrevBtn" class="secondary-btn small-btn">&larr; Prev</button>
+        <span id="flashcardProgress" class="contest-progress"></span>
+        <button id="flashcardNextBtn" class="secondary-btn small-btn">Next &rarr;</button>
+      </div>
+      <button id="generateFlashcardsBtn" class="primary-btn">Generate Flashcards</button>
+    </div>
+
+    <div id="diagnoseWrap" class="diagnose-wrap" hidden>
+      <label class="diagnose-label" for="diagnoseQuestion">The question</label>
+      <textarea id="diagnoseQuestion" class="diagnose-textarea" rows="2" placeholder="Paste or type the question you got wrong…"></textarea>
+      <label class="diagnose-label" for="diagnoseYourAnswer">Your answer</label>
+      <textarea id="diagnoseYourAnswer" class="diagnose-textarea" rows="2" placeholder="What you answered…"></textarea>
+      <label class="diagnose-label" for="diagnoseCorrectAnswer">Correct answer (optional)</label>
+      <textarea id="diagnoseCorrectAnswer" class="diagnose-textarea" rows="2" placeholder="If you know it — otherwise leave blank"></textarea>
+      <button id="diagnoseBtn" class="primary-btn">Diagnose</button>
+      <div class="output-panel" id="diagnosePanel" hidden>
+        <div class="output-margin"></div>
+        <div id="diagnoseContent" class="output-content"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEST INTRO / TOPIC PICKER -->
+  <section id="view-contest-intro" class="view" hidden>
+    <div class="contest-intro">
+      <span class="eyebrow">Weekly Contest</span>
+      <h1>Pick your topics.</h1>
+      <p class="subhead">Choose what you're ready to be tested on this round — up to 5 questions drawn from your selection, no leaderboard, no pressure to cover everything.</p>
+      <div id="contestTopicPicker" class="contest-topic-picker"></div>
+      <button id="beginContestBtn" class="primary-btn" disabled>Select a topic to begin</button>
+    </div>
+  </section>
+
+  <!-- CONTEST -->
+  <section id="view-contest" class="view" hidden>
+    <div class="contest-header">
+      <span class="eyebrow">Weekly Contest</span>
+      <div id="flipClock" class="flip-clock">00:00</div>
+      <div class="contest-progress-bar"><div id="contestProgressBar" class="contest-progress-bar-fill" style="width:0%"></div></div>
+    </div>
+    <div class="contest-card">
+      <span id="contestTopicLabel" class="contest-topic-label"></span>
+      <div id="contestQuestion" class="contest-question"></div>
+      <div id="contestOptions" class="contest-options"></div>
+    </div>
+    <div class="contest-footer">
+      <span id="contestProgress" class="contest-progress"></span>
+      <button id="contestNextBtn" class="primary-btn" disabled>Next</button>
+    </div>
+  </section>
+
+  <!-- CONTEST RESULTS -->
+  <section id="view-results" class="view" hidden>
+    <div class="view-head">
+      <span class="eyebrow">Contest complete</span>
+      <h1 id="scoreHeadline">Score</h1>
+    </div>
+    <div id="scoreBreakdown" class="score-breakdown"></div>
+    <div class="view-head" style="margin-top: 28px;">
+      <span class="eyebrow">Personalized feedback</span>
+    </div>
+    <div class="output-panel">
+      <div class="output-margin"></div>
+      <div id="feedbackContent" class="output-content"></div>
+    </div>
+    <div class="reschedule-box">
+      <h3>Reschedule next week's contest</h3>
+      <p class="hint">Pick a new date within 7 days of the original — this actually controls when your next contest unlocks, not just a note.</p>
+      <input type="date" id="rescheduleDate" />
+      <button id="rescheduleBtn" class="secondary-btn">Reschedule</button>
+      <p id="rescheduleMsg" class="reschedule-msg"></p>
+    </div>
+    <button id="doneBtn" class="secondary-btn">Back to topics</button>
+  </section>
+
+  <!-- BOOKMARKS -->
+  <section id="view-bookmarks" class="view" hidden>
+    <div class="view-head">
+      <button class="back-link" data-back="exams">&larr; Back</button>
+      <span class="eyebrow">Saved for later</span>
+      <h1>Your bookmarks</h1>
+    </div>
+    <div id="bookmarksList" class="bookmarks-list"></div>
+  </section>
+
+  <!-- BADGES -->
+  <section id="view-badges" class="view" hidden>
+    <div class="view-head">
+      <button class="back-link" data-back="exams">&larr; Back</button>
+      <span class="eyebrow">Your progress</span>
+      <h1>Achievements</h1>
+    </div>
+    <div id="badgesList" class="badges-grid"></div>
+  </section>
+
+  <!-- STUDY PLAN -->
+  <section id="view-study-plan" class="view" hidden>
+    <div class="view-head">
+      <button class="back-link" data-back="exams">&larr; Back</button>
+      <span class="eyebrow">Personalized schedule</span>
+      <h1>Build your study plan</h1>
+      <p class="subhead">Tell me your exam date — I'll lay out a realistic day-by-day plan across your syllabus.</p>
+    </div>
+    <div class="study-plan-form">
+      <label for="examDateInput">Exam date</label>
+      <input type="date" id="examDateInput" />
+      <button id="generateStudyPlanBtn" class="primary-btn">Generate Plan</button>
+    </div>
+    <div class="output-panel" id="studyPlanPanel" hidden>
+      <div class="output-margin"></div>
+      <div id="studyPlanContent" class="output-content"></div>
+    </div>
+    <div class="workspace-actions" id="studyPlanActions" hidden>
+      <button id="downloadStudyPlanBtn" class="secondary-btn">Download PDF</button>
+    </div>
+  </section>
+
+  <!-- CHEAT SHEET -->
+  <section id="view-cheat-sheet" class="view" hidden>
+    <div class="view-head">
+      <button class="back-link" data-back="subjects">&larr; Topics</button>
+      <span class="eyebrow">Quick reference</span>
+      <h1 id="cheatSheetTitle">Cheat Sheet</h1>
+    </div>
+    <div class="output-panel">
+      <div class="output-margin"></div>
+      <div id="cheatSheetContent" class="output-content">
+        <p class="placeholder">Generating…</p>
+      </div>
+    </div>
+    <div class="workspace-actions">
+      <button id="downloadCheatSheetBtn" class="secondary-btn">Download PDF</button>
+    </div>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

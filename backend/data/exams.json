@@ -1,0 +1,16 @@
+{
+  "exams": [
+    { "id": "gate_cs", "name": "GATE - Computer Science (CS)", "status": "active", "tagline": "The one with real content" },
+    { "id": "gate_da", "name": "GATE - Data Science & AI (DA)", "status": "coming_soon", "tagline": "Architecture ready, content pending" },
+    { "id": "gate_ee", "name": "GATE - Electrical Engineering (EE)", "status": "coming_soon", "tagline": "Architecture ready, content pending" },
+    { "id": "gate_ce", "name": "GATE - Civil Engineering (CE)", "status": "coming_soon", "tagline": "Architecture ready, content pending" },
+    { "id": "gate_me", "name": "GATE - Mechanical Engineering (ME)", "status": "coming_soon", "tagline": "Architecture ready, content pending" },
+    { "id": "gate_ece", "name": "GATE - Electronics & Comm. (ECE)", "status": "coming_soon", "tagline": "Architecture ready, content pending" },
+    { "id": "ugc_net_cs", "name": "UGC NET - Computer Science", "status": "coming_soon", "tagline": "Lectureship & PhD eligibility" },
+    { "id": "csir_net", "name": "CSIR NET - Sciences", "status": "coming_soon", "tagline": "PhD & JRF eligibility" },
+    { "id": "cat", "name": "CAT (MBA Entrance)", "status": "coming_soon", "tagline": "Quant + LR/DI + Verbal" },
+    { "id": "gre", "name": "GRE (Masters Abroad)", "status": "coming_soon", "tagline": "Verbal + Quant + AWA" },
+    { "id": "campus_placement", "name": "Campus Placement Prep", "status": "coming_soon", "tagline": "DSA + Aptitude + HR rounds" },
+    { "id": "bank_ssc", "name": "Bank & SSC Exams", "status": "coming_soon", "tagline": "Quant + Reasoning + GK for govt jobs" }
+  ]
+}
