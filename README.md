@@ -1,147 +1,149 @@
-# Exmentify — AI Exam Prep Companion
+# Exmentify-ML: Weak-Topic Radar
 
-An exam-agnostic AI study companion. GATE CS is fully built out (10 subjects,
-45 topics, 79 seeded previous-year questions); 9 other exams — other GATE
-branches (DA, EE, CE, ME, ECE), UGC NET, CSIR NET, CAT, GRE, Campus Placement,
-and Bank & SSC — are wired into the architecture as "Coming Soon" to prove the
-design generalizes.
+An ML-powered study coach for GATE CS aspirants. A trained model predicts which of the 11 GATE CS subjects a learner is weakest in, and an AI tutor (LangChain + Google Gemini) explains exactly that topic and sets practice questions.
 
-## Documentation
-- [Project Concept Note](docs/Exmentify_Project_Concept_Note.pdf)
-- [Project Report](docs/Exmentify_Project_Report.pdf)
+Final project for the **AICTE | IBM SkillsBuild | Machine Learning & Applied AI Internship 2026 (BharatCares)**.
+Goal addressed: **SDG 4, Quality Education**.
 
-## Live Application
+- **Live demo:** https://exmentify-ml.onrender.com/ml/dashboard
+- **API docs (Swagger):** https://exmentify-ml.onrender.com/docs
 
-**Primary URL (HTTPS via CloudFront):**
-https://d1vcdm3hqyivum.cloudfront.net
+> The demo runs on a free Render instance. If it has been idle, the first load can take about 50 seconds. Click **Load demo data** on the dashboard to see the heatmap filled in.
 
-**Backend URL (HTTP via AWS Elastic Beanstalk):**
-http://sheema-exmentify-app.ap-south-1.elasticbeanstalk.com
+![Weak-Topic Radar dashboard](docs/dashboard.png)
 
-*Note: The application is hosted on AWS Elastic Beanstalk. A CloudFront
-distribution sits in front of it to serve the app over HTTPS, since Elastic
-Beanstalk's default domain cannot issue a valid SSL certificate on its own.
-Both URLs are live and point to the same running application.*
+## The problem
 
-**To see live AI-generated responses, click the GATE - Computer Science (CS)
-card on the homepage.** The other exam cards are shown as "Coming Soon" to
-demonstrate that the application's architecture is exam-agnostic, but only
-GATE CS has topics, PYQs, and AI generation fully wired up in this submission.
+GATE CS is a highly competitive exam, and many aspirants prepare on their own because coaching is costly or unavailable in their city. Study material is scattered across videos, PDFs and test series, so learners cannot tell which topic needs work next, and nothing warns them when a once-strong topic is going stale.
 
-## Features
+## What it does
 
-- **Explain, Revision Notes, Practice (difficulty-tuned), PYQ Solutions** —
-  streamed live from Gemini, token-by-token
-- **Ask a Doubt** — an open-ended follow-up chat scoped to the current topic
-- **Flashcards** — AI-generated flip cards per topic
-- **Diagnose My Mistake** — explains the misconception behind a specific
-  wrong answer
-- **AI Study Plan** — a day-by-day revision schedule tied to a real exam date
-- **Structured Cheat Sheets** — per-subject reference cards
-- **Weekly Contest** — student-selected topics, timed, personal (never
-  comparative) feedback, with a real 7-day unlock gate and a reschedule
-  control that actually moves the unlock date
-- **Mermaid diagrams** — rendered inline in Explain responses when a visual
-  genuinely helps
-- **PDF export** — notes, cheat sheets, PYQ lists, and study plans
-- **Study tracking** — streaks, a daily goal ring, bookmarks, and achievement
-  badges — all via localStorage, no account or database required
-- **4 themes** — Study Lamp, Daylight, Midnight, Sepia
+- **Weak-Topic Radar:** a heatmap of predicted readiness for each GATE CS topic (red = weakest, green = strongest).
+- **Study next:** the weakest topic with a suggested difficulty level.
+- **AI tutor:** a short revision and three practice MCQs with reasons for the weakest topic. Output is labelled *AI-generated: verify with a standard textbook*.
+- **Learning loop:** marking an answer right or wrong updates the prediction immediately.
+- **Reminders:** an n8n workflow calls the API on a schedule and emails the learner a revision and practice MCQs for the weakest topic.
 
-## Project structure
+## How the machine learning works
+
+| Item | Detail |
+|---|---|
+| Task | Predict the probability that the next answer on a topic is correct (the topic's *readiness*) |
+| Data | 7,500 **simulated** attempts from 250 learners across 11 topics (`ml/generate_data.py`) |
+| Simulation | Hidden skill per topic, difficulty effect, forgetting over time, random noise |
+| Features | topic (one-hot), difficulty (1 to 3), past accuracy, time taken, days since last practice |
+| Models compared | Logistic regression and gradient boosting, 80/20 stratified split |
+| Selected | Logistic regression (higher ROC-AUC) |
+
+**Results on the held-out test set (1,500 attempts):**
+
+| Metric | Value |
+|---|---|
+| ROC-AUC | 0.70 (0.705 in the training log) |
+| Accuracy | about 67% (1,006 of 1,500 correct) |
+| Precision / recall for correct answers | 0.63 / 0.50 |
+| Recall for incorrect answers | 0.79 |
+
+![ROC curve](docs/roc_curve.png)
+![Confusion matrix](docs/confusion_matrix.png)
+
+The metrics describe the simulation, not real learners. The app relies on the **ranking of topics** per learner rather than on predicting any single answer.
+
+In the app, readiness is predicted for all 11 topics and ranked. The lowest four are flagged weak, the next three medium and the rest strong (a relative ranking). Weaker topics get an easier suggested difficulty.
+
+## Architecture
 
 ```
-exmentify/
-├── backend/
-│   ├── main.py            # FastAPI app: catalog routes + SSE streaming routes
-│   ├── requirements.txt
-│   └── data/
-│       ├── exams.json
-│       ├── subjects.json
-│       └── pyqs.json
-├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── app.js              # vanilla JS, fetch-based SSE parsing, localStorage
-├── Dockerfile               # single image, serves API + static frontend
-├── .env.example
-└── .gitignore
+Browser dashboard (HTML/CSS/JS)
+        |
+        v
+FastAPI service (ml_app.py, ml/api.py)  --->  scikit-learn model (joblib)
+        |                                      per-learner history (JSON file)
+        +--->  LangChain prompt chain  --->  Google Gemini
+
+n8n workflow: Schedule Trigger -> HTTP Request (/ml/explain) -> Markdown to HTML -> Send Email
 ```
+
+Hosted on Render.
+
+## API endpoints
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/ml/topics` | List the 11 topics |
+| POST | `/ml/attempt` | Record a right or wrong answer |
+| GET | `/ml/weak-topics/{user}` | Readiness for every topic, ranked weakest first |
+| GET | `/ml/next-question/{user}` | Weakest topic and suggested difficulty |
+| GET | `/ml/explain/{user}` | Revision and practice MCQs for the weakest topic (LangChain + Gemini) |
+| POST | `/ml/demo-seed/{user}` | Load demo attempts for a user |
+| GET | `/ml/dashboard` | The dashboard page |
 
 ## Run locally
 
 ```bash
-cd exmentify
-cp .env.example .env        # then paste your real GEMINI_API_KEY into .env
-docker build -t exmentify .
-docker run --env-file .env -p 8000:8000 exmentify
+git clone https://github.com/sheemashariq1/exmentify-ml.git
+cd exmentify-ml
+python -m venv venv
+# Windows: venv\Scripts\activate      macOS/Linux: source venv/bin/activate
+pip install -r requirements.txt
+
+cp .env.example .env        # then add your Gemini key and model name
+python ml/generate_data.py  # creates data/attempts.csv
+python ml/train.py          # trains and saves models/weak_topic_model.joblib
+python -m uvicorn ml_app:app --reload
 ```
 
-Open http://localhost:8000. Without a valid `GEMINI_API_KEY`, every AI
-endpoint still responds correctly — it streams a graceful SSE `error` event
-instead of crashing, so you can verify the whole app end-to-end before wiring
-in a key.
+Open http://127.0.0.1:8000/ml/dashboard. Without `GEMINI_API_KEY` and `GEMINI_MODEL`, everything works except `/ml/explain`, which returns an error message.
 
-### Run without Docker (fastest for iterating)
+## Deploy on Render
 
-```bash
-cd exmentify/backend
-pip install -r requirements.txt --break-system-packages   # or use a venv
-export GEMINI_API_KEY=your-key-here
-uvicorn main:app --reload --port 8000
+- Runtime: Python 3
+- Build command: `pip install -r requirements.txt && python ml/generate_data.py && python ml/train.py`
+- Start command: `python -m uvicorn ml_app:app --host 0.0.0.0 --port $PORT`
+- Environment variables: `GEMINI_API_KEY`, `GEMINI_MODEL`, `PYTHON_VERSION`
+
+The build step retrains the model on the server, so the saved model always matches the installed scikit-learn version.
+
+## Project structure
+
+```
+exmentify-ml/
+├── ml/
+│   ├── generate_data.py   # simulated attempt data
+│   ├── train.py           # trains, compares and saves the model
+│   ├── predictor.py       # readiness, ranking, study-next logic
+│   ├── explain.py         # LangChain + Gemini tutor chain
+│   └── api.py             # FastAPI router
+├── ml_app.py              # FastAPI entry point
+├── frontend/ml_dashboard.html
+├── data/attempts.csv
+├── models/                # saved model and metrics.json
+├── docs/                  # charts, screenshots, exported n8n workflow
+├── legacy-base-app/       # earlier Exmentify study app, kept for context (not used by the live demo)
+├── requirements.txt
+└── .env.example
 ```
 
-## Deploy to AWS (Elastic Beanstalk + CloudFront)
+## Limitations
 
-This app is deployed via **AWS Elastic Beanstalk** (running the Docker
-container) with **AWS CloudFront** in front of it to provide HTTPS, since
-Elastic Beanstalk's default domain cannot be issued a valid SSL certificate
-on its own.
+- The model is trained on simulated data and must be retrained on real learner attempts before any claim about learning outcomes.
+- AI-generated questions can be wrong or poorly framed. They are labelled for verification, and an expert-reviewed question bank is planned.
+- Learner history is kept in a JSON file that resets on redeploy; a database is planned.
+- The free hosting tier sleeps when idle.
 
-1. Zip the project folder (`Dockerfile`, `backend/`, `frontend/`, etc.).
-2. In the AWS Console, go to **Elastic Beanstalk → Create application**,
-   platform: Docker, upload the zip as your source.
-3. Under **Configuration → Software → Environment properties**, add:
-   `GEMINI_API_KEY` = your real key. (Never put this in the Dockerfile, in
-   code, or in git — environment properties are the only place it should
-   live.)
-4. Deploy. Elastic Beanstalk gives you an HTTP URL on `*.elasticbeanstalk.com`.
-5. Create a **CloudFront distribution** with that Elastic Beanstalk URL as
-   its origin, to serve the app over HTTPS.
-6. Your CloudFront domain (`https://xxxx.cloudfront.net`) is your public
-   HTTPS submission URL.
+## Future scope
 
-## What to double-check before submitting
+- Retrain on real learner data and compare knowledge-tracing models; explore reinforcement learning for question selection.
+- Expert-reviewed question bank with answer verification.
+- WhatsApp reminders alongside the existing n8n email reminders.
+- Persistent database, login and progress history; regional-language support.
+- More exams: UGC NET CS, campus placements and CAT.
 
-- All AI modes stream visibly token-by-token (not one-shot blocks)
-- The CloudFront URL is public HTTPS and loads without VPN/auth, on both
-  desktop and mobile
-- `git log -p --all` shows no trace of the API key anywhere in history
-- Exam-select screen shows GATE CS active, others "Coming Soon"
-- Contest results never show a rank, score comparison, or leaderboard
-- Weekly Contest correctly locks after completion and only unlocks via the
-  7-day timer or a reschedule
-- Theme selection persists after a page reload
-- Edge cases (bad exam/topic, an empty-PYQ topic, an out-of-range
-  reschedule date) all fail gracefully, never a raw crash or stack trace
+## Background
 
-## Notes on scope
-
-- GATE CS has full topic and PYQ content across all 10 subjects; other exams
-  intentionally render as disabled "Coming Soon" cards to demonstrate the
-  architecture generalizes without requiring content for every exam.
-- No database — all user-specific state (contest history, theme, streaks,
-  bookmarks, badges) lives in `localStorage`.
-  
-## Certification
-
-This project was submitted as the final deliverable for the **IBM SkillsBuild Gen AI & Cloud Computing Internship**, a 6-week program by BharatCares in association with AICTE and IBM SkillsBuild (22 June – 31 July 2026).
-
-**Certificate ID:** BHIBMAC06445
-![Certificate](./docs/Certificate.png)
+The ML components (data generation, model, API endpoints, dashboard, LangChain tutor and n8n workflow) were built for this internship. The folder `legacy-base-app/` contains the author's earlier Exmentify study-app code, kept for context. It is not part of the ML service described above and is not what the live demo runs.
 
 ## Author
 
-**Sheema Shariq** — Jamia Millia Islamia
-Built for the IBM SkillsBuild × BharatCares (AICTE)- Gen AI and Cloud Computing Internship.
-Final project submission.
+Sheema Shariq, B.Sc. (Hons.) Computer Science, Jamia Millia Islamia
+Internship ID: IBMUEML001308
