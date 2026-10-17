@@ -19,6 +19,7 @@ def build_chain():
          "(2) three practice MCQs with 4 options each, marking the correct "
          "option with a one-line reason."         "\n\nFormat the answer in Markdown. Do NOT use LaTeX or $ signs; "
          "write grammar rules, formulas and code in plain text or inside "
-         "backticks, e.g. `A -> B C`."),
+         "backticks, e.g. `A -> B C`."         "\nPut each MCQ option on its own line as a Markdown bullet list, "
+         "e.g. '- A) ...', and put 'Correct Option' and 'Reason' on separate lines."),
     ])
     return prompt | llm | StrOutputParser()
