@@ -1,0 +1,129 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3daced1a-5286-481b-90e0-ba4568867bb7",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://exmentify-ml.onrender.com/ml/explain/sheema",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "60575375-e280-4ef8-ac95-3f3483c321fd",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "fromEmail": "sheemashariq10@gmail.com",
+        "toEmail": "sheemashariq10@gmail.com",
+        "subject": "=Revise {{ $('HTTP Request').item.json.topic }} today",
+        "html": "={{ $json.data }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        672,
+        0
+      ],
+      "id": "c2a14d8d-0c13-415c-96f0-55a01bf1280e",
+      "name": "Send an Email",
+      "webhookId": "7b2a0623-ea6c-4eb9-90c3-825c767fd826",
+      "notesInFlow": false,
+      "credentials": {
+        "smtp": {
+          "id": "kDs3XHpbltuJkOEJ",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.content }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "5bfc75c9-a947-4ec5-815f-02c8e41ae720",
+      "name": "Markdown"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "Send an Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "8e8cfa81-0576-4675-9989-a80624252471",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2cc960abb38128e93c5ee2a13fcaa73eb5540ca635ef4f1018687e50200e0f49"
+  },
+  "nodeGroups": [],
+  "id": "BIjIHflIbhA3m23R",
+  "tags": []
+}
